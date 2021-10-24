@@ -60,13 +60,10 @@ class MinumProvider extends BaseProvider {
       //   var rm = await sh.getString('riwayat-minum');
       //   riwayatMinum = jsonDecode(rm);
       // }
-      var tkn = await sh.getString("token");
-      var token = {
-        "token" : tkn
-      };
+
       // riwayatMinum = await DataHarianServices().getDataToday(token);
 
-      riwayatMinum = await dataHarianServices.getDataToday(token);
+      riwayatMinum = await dataHarianServices.getDataToday();
       if(riwayatMinum.data.isEmpty){
         print("kosong");
         setState(ViewState.FetchNull);
