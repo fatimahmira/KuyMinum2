@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "862115956479",
+    "project_id": "kuy-minum",
+    "storage_bucket": "kuy-minum.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862115956479:android:e859e9698fbf489574eeca",
+        "android_client_info": {
+          "package_name": "com.example.KuyMinum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862115956479-dk0cui068m492tuuf823dgsddnbhe67k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.KuyMinum",
+            "certificate_hash": "9448339828733a4e6ce0de54cf89d13d6888d5a7"
+          }
+        },
+        {
+          "client_id": "862115956479-jqji67ej9k9d0vod0jsl21hnshu5mmks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8yWCuTJVgyJ3Xea0rXevGKQBJGmssPys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862115956479-jqji67ej9k9d0vod0jsl21hnshu5mmks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
