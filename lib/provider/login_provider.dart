@@ -39,6 +39,7 @@ class LoginProvider extends BaseProvider {
 
   Future<bool> loginApi() async {
     try {
+      setState(ViewState.Fetching);
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
       var login = await signInwithGoogle();
       // prov.state == ViewState.Fetching;
@@ -51,16 +52,53 @@ class LoginProvider extends BaseProvider {
           "password": user.email
         };
         Response res = await _authService.postLogin(dataRegister);
-        print(res);
-        // print("token = ${res.data["access_token"]}");
-        sharedPreferences.setString('token', res.data["access_token"]);
+        print("res 1 ${res.data}");
+
+        if(res.data["status"] == "trylogin"){
+          res = await _authService.postLogin(dataRegister);
+          print("res 2 "+ res.data);
+        } else {
+          print("masuk");
+        }
+        print("token = ${res.data["access_token"]}");
+        await sharedPreferences.setString('token', res.data["access_token"]);
+        setState(ViewState.Idle);
 
         return true;
       } else {
-        return false;
+        return throw false;
       }
     } catch (e) {
+      e.toString();
       return false;
+    }
+  }
+
+  void loginCoba() async {
+    try {
+        // Map dataRegister = {
+        //   "email": user.email,
+        //   "key": "mirakeling",
+        //   "name": user.displayName,
+        //   "password": user.email
+        // };
+        Map dataRegister = {
+          "email": "gagagaga@gmail.com",
+          "key": "mirakeling",
+          "name": "miraf",
+          "password": "gagagaga@gmail.com"
+        };
+        Response res = await _authService.postLogin(dataRegister);
+        print("res 1 $res");
+        print("res 2 ${res.data["status"]}");
+        if(res.data["status"] == "trylogin"){
+          print("recall");
+        } else {
+          print("masuk");
+        }
+
+    } catch (e) {
+      print(e.toString());
     }
   }
 

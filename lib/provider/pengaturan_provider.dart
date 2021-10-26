@@ -1,9 +1,13 @@
 import 'package:KuyMinum/config/notification_service.dart';
 import 'package:KuyMinum/config/view_state.dart';
+import 'package:KuyMinum/locator.dart';
 import 'package:KuyMinum/provider/base_provider.dart';
+import 'package:KuyMinum/provider/login_provider.dart';
+import 'package:KuyMinum/service/data_harian_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PengaturanProvider extends BaseProvider {
+
   List<String> list = [
     '5 Menit',
     '60 Menit (Default)',
@@ -49,5 +53,12 @@ class PengaturanProvider extends BaseProvider {
     SharedPreferences sh = await SharedPreferences.getInstance();
     sh.setInt('menit-notifikasi', menit);
     sh.setString('menit-teks-notifikasi', selected);
+  }
+
+  Future keluar() async{
+    locator<LoginProvider>().signOutFromGoogle();
+    SharedPreferences sh = await SharedPreferences.getInstance();
+    print("keluar");
+    sh.clear();
   }
 }

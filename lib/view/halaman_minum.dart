@@ -127,8 +127,8 @@ class _HalamanMinumState extends State<HalamanMinum> {
                             elevation: 8.0,
                             shape: CircleBorder(),
                             child: InkWell(
-                              onTap: () {
-                                prov.minum100ml();
+                              onTap: () async{
+                                await prov.minum100ml();
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
@@ -217,9 +217,7 @@ class _HalamanMinumState extends State<HalamanMinum> {
                           }),
                     ),
                   ),
-                  prov.state == ViewState.FetchNull
-                      ? Text("Anda Belum Minum Hari ini")
-                      : Visibility(
+                  Visibility(
                           visible: prov.visibleList,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),

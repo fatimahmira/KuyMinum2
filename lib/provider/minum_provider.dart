@@ -69,7 +69,6 @@ class MinumProvider extends BaseProvider {
         setState(ViewState.FetchNull);
       } else {
         setState(ViewState.Idle);
-
       }
       // print(riwayatMinum);
 
@@ -89,7 +88,7 @@ class MinumProvider extends BaseProvider {
     dataMap['minum'] = minum;
     dataMap['belum-minum'] = targetMinum - minum;
 
-    sh.setString('minum', minum.toString());
+    await sh.setString('minum', minum.toString());
 
     // set riwayat
     var tkn = await sh.getString("token");
@@ -99,22 +98,12 @@ class MinumProvider extends BaseProvider {
       'token' : tkn
     };
     dataHarianServices.createMinum(minumlu);
-    var token = {
-      "token" : tkn
-    };
-    riwayatMinum = await dataHarianServices.getDataToday(token);
-    print("minumlu $minumlu");
-    print("riwayatMinum $riwayatMinum");
-    // locator<FirestoreProvider>().createOrUpdate(
-    //   ukuran: gelas['ukuran'].toString(),
-    //   jam: "${DateFormat.Hm().format(DateTime.now())}",
-    //   gambar: gelas['gelas'].toString()
-    // );
 
-    // riwayatMinum = await DataHarianServices().getDataToday();
+    riwayatMinum = await dataHarianServices.getDataToday();
+    setState(ViewState.Idle);
 
-    // sh.setString('riwayat-minum', jsonEncode(riwayatMinum));
     notifyListeners();
+
   }
 
   void initGelas() async{

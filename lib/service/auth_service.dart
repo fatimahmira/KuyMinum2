@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:KuyMinum/service/Service.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class AuthService extends Service{
 
@@ -13,8 +14,10 @@ class AuthService extends Service{
       var response = await postLogin2(url, data);
 
       if (response.statusCode == 200) {
+        print(response.toString());
         return response;
       } else {
+        print("else");
         throw ('data tidak ditemukan');
       }
     } on SocketException catch (_) {

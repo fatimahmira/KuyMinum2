@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_screenutil/size_extension.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
@@ -88,32 +89,60 @@ class _HomeState extends State<Home> {
                               SizedBox(
                                 height: 32.h,
                               ),
-                              RaisedButton(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.arrow_forward),
-                                      Text("Login"),
-                                    ],
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: prov.state == ViewState.Fetching
+                                    ? Center(child: CircularProgressIndicator())
+                                    : RaisedButton(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.arrow_forward),
+                                        Text("Login"),
+                                      ],
+                                    ),
                                   ),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  color: Colors.white,
+                                  onPressed: () async {
+                                    var login = await prov.loginApi();
+                                    // prov.state == ViewState.Fetching;
+                                    if (login == true) {
+                                      print("yok login yok");
+                                      Navigator.pushNamed(context, StringRouter.halaman_minum);
+                                      // Navigator.pushNamed(context, StringRouter.data_diri);
+                                    } else {
+                                      print("gagal");
+                                    }
+                                  },
                                 ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                                color: Colors.white,
-                                onPressed: () async {
-                                  var login = await prov.loginApi();
-                                  // prov.state == ViewState.Fetching;
-                                  if (login == true) {
-                                    print("yok login yok");
-                                    Navigator.pushNamed(context, StringRouter.halaman_minum);
-                                    // Navigator.pushNamed(context, StringRouter.data_diri);
-                                  } else {
-                                    print("gagal");
-                                  }
-                                },
                               ),
+                              // Padding(
+                              //   padding: const EdgeInsets.all(8.0),
+                              //   child: SizedBox(
+                              //     child: RaisedButton(
+                              //       child: Padding(
+                              //         padding: const EdgeInsets.all(10.0),
+                              //         child: Row(
+                              //           mainAxisAlignment: MainAxisAlignment.center,
+                              //           children: [
+                              //             Icon(Icons.arrow_forward),
+                              //             Text("Sign Up"),
+                              //           ],
+                              //         ),
+                              //       ),
+                              //       shape: RoundedRectangleBorder(
+                              //           borderRadius: BorderRadius.circular(20)),
+                              //       color: Colors.white,
+                              //       onPressed: () async {
+                              //         await prov.loginCoba();
+                              //       },
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ))

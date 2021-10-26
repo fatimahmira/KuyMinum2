@@ -42,6 +42,7 @@ class Service {
               'Accept': 'application/json',
             }),
             data: data);
+        print("post login 2");
         return response;
       } else {
         print('no');
@@ -91,6 +92,33 @@ class Service {
               "token": true
             }),
             data: data);
+        return response;
+      } else {
+        print('no');
+        throw SocketException('no_internet');
+      }
+    } on TimeoutException catch (e) {
+      throw SocketException('no_internet');
+    } catch (error) {
+      errorDioHandler(error);
+    }
+  }
+
+  Future delete(String url, var data) async {
+    try{
+      url = baseUrl + url;
+      print(url);
+      if (await locator<ApiInterceptors>().checkConnection()) {
+        final response = await dio.delete(url,
+            options: Options(headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'token': true
+            }),
+            data: data);
+
+        print("berhasil delete");
+        print(response);
         return response;
       } else {
         print('no');

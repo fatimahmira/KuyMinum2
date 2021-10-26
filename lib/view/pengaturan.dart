@@ -69,13 +69,6 @@ class _PengaturanState extends State<Pengaturan> {
                           title: Text(
                             "Notifikasi",
                           ),
-                          onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) => Dialog(
-                                      child: DialogNotifikasi(),
-                                    ));
-                          },
                         ),
                         ListTile(
                           contentPadding: EdgeInsets.all(0),
@@ -101,12 +94,10 @@ class _PengaturanState extends State<Pengaturan> {
                             style: TextStyle(color: colorDanger),
                           ),
                           onTap: () async {
-                            locator<LoginProvider>().signOutFromGoogle();
-                            SharedPreferences sh =
-                                await SharedPreferences.getInstance();
-                            sh.clear();
-                            Navigator.pushReplacementNamed(
-                                context, StringRouter.home);
+                            await prov.keluar();
+                              Navigator.pushReplacementNamed(
+                                  context, StringRouter.home);
+
                           },
                         ),
                       ],

@@ -7,14 +7,8 @@ import 'package:flutter/material.dart';
 
 import '../../base_view.dart';
 
-class PilihGelas extends StatefulWidget {
+class PilihGelas extends StatelessWidget {
   const PilihGelas({Key key}) : super(key: key);
-
-  @override
-  _PilihGelasState createState() => _PilihGelasState();
-}
-
-class _PilihGelasState extends State<PilihGelas> {
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +41,18 @@ class _PilihGelasState extends State<PilihGelas> {
                     child: Text ("Apakah Anda memang minum air saat ini?",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 20,
+                        fontSize: 20,
                       ),),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 35.0, bottom: 30),
                     child: RaisedButton(
-                      child: Text("Ya, Tentu saja"),
+                        child: Text("Ya, Tentu saja"),
                         color: cPrimary,
                         onPressed: (){
-                      Navigator.pop(context);
-                    }),
+                          // prov.minum100ml();
+                          Navigator.pop(context);
+                        }),
                   )
                 ],
               ),
